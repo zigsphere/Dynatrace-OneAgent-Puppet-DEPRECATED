@@ -41,7 +41,7 @@ class dynatraceoneagent::params {
     $infra_only                  = undef
     $network_zone                = undef
 
-    if $::osfamily == 'Windows' {
+    if $facts['os']['family'] == 'Windows' {
         #Parameters for Windows OneAgent Download
         $os_type                    = 'windows'
         $download_dir               = 'C:\\Windows\\Temp'
@@ -64,7 +64,7 @@ class dynatraceoneagent::params {
         $hostmetadata_config_file           = "${oneagent_puppet_conf_dir}\\hostcustomproperties.conf"
         $oneagent_infraonly_config_file     = "${oneagent_puppet_conf_dir}\\infraonly.conf"
         $oneagent_networkzone_config_file   = "${oneagent_puppet_conf_dir}\\networkzone.conf"
-    } elsif ($::kernel == 'Linux') or ($::osfamily == 'AIX')  {
+    } elsif ($facts['kernel'] == 'Linux') or ($facts['os']['family'] == 'AIX')  {
         #Parameters for Linux/AIX OneAgent Download
         $download_dir               = '/tmp'
         #Parameters for Linux/AIX OneAgent Installer
